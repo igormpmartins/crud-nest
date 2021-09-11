@@ -3,9 +3,16 @@
 # ------------------------------------------------------
 
 type Product {
-  id: Float!
+  id: Float
   description: String!
   price: Float!
+}
+
+type Image {
+  id: Float
+  description: String!
+  url: String!
+  product_id: Float!
 }
 
 type Query {
@@ -14,10 +21,21 @@ type Query {
 
 type Mutation {
   createProduct(input: ProductInput!): Product!
+  removeProduct(id: Float!): Boolean!
+  updateProduct(input: ProductInput!, id: Float!): Product!
+  createImageOnProduct(input: ImageInput!, productId: Float!): Image!
+  removeImageOnProduct(id: Float!, productId: Float!): Boolean!
 }
 
 input ProductInput {
   id: Float
   description: String!
   price: Float!
+}
+
+input ImageInput {
+  id: Float
+  description: String!
+  url: String!
+  product_id: Float
 }

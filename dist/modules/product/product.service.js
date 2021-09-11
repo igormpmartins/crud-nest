@@ -56,6 +56,35 @@ let ProductService = class ProductService {
         await conn.query('delete from products where id = ?', [id]);
         return true;
     }
+    async update(id, entity) {
+        const conn = await this.mySQL.getConnection();
+        await conn
+            .query('UPDATE products SET description = ?, price = ? WHERE id = ?', [entity.description, entity.price, id]);
+        return entity;
+    }
+    async patch(id, entity) {
+        const prod = await this.findById(id);
+        if (entity.description) {
+            prod.description = entity.description;
+        }
+        if (entity.price) {
+            prod.price = entity.price;
+        }
+        await this.update(id, prod);
+        return prod;
+    }
+    async addImage(productId, entity) {
+        console.log('aki', entity);
+        const conn = await this.mySQL.getConnection();
+        await conn
+            .query('INSERT INTO images (product_id, description, url) VALUES (?, ?, ?)', [productId, entity.description, entity.url]);
+        return entity;
+    }
+    async removeImage(productId, id) {
+        const conn = await this.mySQL.getConnection();
+        await conn.query('DELETE FROM images WHERE product_id = ? and id = ? LIMIT 1', [productId, id]);
+        return true;
+    }
 };
 ProductService = __decorate([
     (0, common_1.Injectable)(),

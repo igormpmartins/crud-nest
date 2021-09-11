@@ -31,6 +31,18 @@ let ProductController = class ProductController {
     async remove(id) {
         return this.productService.remove(id);
     }
+    async put(id, product) {
+        return this.productService.update(id, product);
+    }
+    async patch(id, product) {
+        return this.productService.patch(id, product);
+    }
+    async createImage(id, image) {
+        return this.productService.addImage(id, image);
+    }
+    async removeImage(productId, id) {
+        return this.productService.removeImage(productId, id);
+    }
 };
 __decorate([
     (0, common_1.Get)(),
@@ -59,6 +71,38 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "remove", null);
+__decorate([
+    (0, common_1.Put)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Object]),
+    __metadata("design:returntype", Promise)
+], ProductController.prototype, "put", null);
+__decorate([
+    (0, common_1.Patch)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Object]),
+    __metadata("design:returntype", Promise)
+], ProductController.prototype, "patch", null);
+__decorate([
+    (0, common_1.Post)(':id/images'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Object]),
+    __metadata("design:returntype", Promise)
+], ProductController.prototype, "createImage", null);
+__decorate([
+    (0, common_1.Delete)(':productId/images/:id'),
+    __param(0, (0, common_1.Param)('productId')),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Number]),
+    __metadata("design:returntype", Promise)
+], ProductController.prototype, "removeImage", null);
 ProductController = __decorate([
     (0, common_1.Controller)('products'),
     __metadata("design:paramtypes", [product_service_1.ProductService])

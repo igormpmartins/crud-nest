@@ -15,8 +15,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductResolver = void 0;
 const graphql_1 = require("@nestjs/graphql");
 const product_1 = require("./dto/product");
+const image_1 = require("./dto/image");
 const product_input_1 = require("./dto/product.input");
 const product_service_1 = require("./product.service");
+const image_input_1 = require("./dto/image.input");
 let ProductResolver = class ProductResolver {
     constructor(productService) {
         this.productService = productService;
@@ -35,6 +37,18 @@ let ProductResolver = class ProductResolver {
     async create(input) {
         return this.productService.create(input);
     }
+    async remove(id) {
+        return this.productService.remove(id);
+    }
+    async updateProduct(id, input) {
+        return this.productService.update(id, input);
+    }
+    async createImageOnProduct(productId, input) {
+        return this.productService.addImage(productId, input);
+    }
+    async removeImageOnProduct(productId, id) {
+        return this.productService.removeImage(productId, id);
+    }
 };
 __decorate([
     (0, graphql_1.Query)(returns => [product_1.Product], { name: 'getAllProducts' }),
@@ -49,6 +63,37 @@ __decorate([
     __metadata("design:paramtypes", [product_input_1.ProductInput]),
     __metadata("design:returntype", Promise)
 ], ProductResolver.prototype, "create", null);
+__decorate([
+    (0, graphql_1.Mutation)(returns => Boolean, { name: 'removeProduct' }),
+    __param(0, (0, graphql_1.Args)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], ProductResolver.prototype, "remove", null);
+__decorate([
+    (0, graphql_1.Mutation)(returns => product_1.Product, { name: 'updateProduct' }),
+    __param(0, (0, graphql_1.Args)('id')),
+    __param(1, (0, graphql_1.Args)('input')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, product_input_1.ProductInput]),
+    __metadata("design:returntype", Promise)
+], ProductResolver.prototype, "updateProduct", null);
+__decorate([
+    (0, graphql_1.Mutation)(returns => image_1.Image, { name: 'createImageOnProduct' }),
+    __param(0, (0, graphql_1.Args)('productId')),
+    __param(1, (0, graphql_1.Args)('input')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, image_input_1.ImageInput]),
+    __metadata("design:returntype", Promise)
+], ProductResolver.prototype, "createImageOnProduct", null);
+__decorate([
+    (0, graphql_1.Mutation)(returns => Boolean, { name: 'removeImageOnProduct' }),
+    __param(0, (0, graphql_1.Args)('productId')),
+    __param(1, (0, graphql_1.Args)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Number]),
+    __metadata("design:returntype", Promise)
+], ProductResolver.prototype, "removeImageOnProduct", null);
 ProductResolver = __decorate([
     (0, graphql_1.Resolver)(of => product_1.Product),
     __metadata("design:paramtypes", [product_service_1.ProductService])

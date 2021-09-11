@@ -9,24 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Product = void 0;
+exports.ImageInput = void 0;
 const graphql_1 = require("@nestjs/graphql");
-let Product = class Product {
+let ImageInput = class ImageInput {
 };
 __decorate([
     (0, graphql_1.Field)({ nullable: true }),
     __metadata("design:type", Number)
-], Product.prototype, "id", void 0);
+], ImageInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(),
     __metadata("design:type", String)
-], Product.prototype, "description", void 0);
+], ImageInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(),
+    __metadata("design:type", String)
+], ImageInput.prototype, "url", void 0);
+__decorate([
+    (0, graphql_1.Field)({ nullable: true }),
     __metadata("design:type", Number)
-], Product.prototype, "price", void 0);
-Product = __decorate([
-    (0, graphql_1.ObjectType)()
-], Product);
-exports.Product = Product;
-//# sourceMappingURL=product.js.map
+], ImageInput.prototype, "product_id", void 0);
+ImageInput = __decorate([
+    (0, graphql_1.InputType)()
+], ImageInput);
+exports.ImageInput = ImageInput;
+//# sourceMappingURL=image.input.js.map
