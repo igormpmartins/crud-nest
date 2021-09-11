@@ -52,6 +52,7 @@ let ProductService = class ProductService {
         return entity;
     }
     async remove(id) {
+        console.log('teste');
         const conn = await this.mySQL.getConnection();
         await conn.query('delete from products where id = ?', [id]);
         return true;
