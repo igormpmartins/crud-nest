@@ -13,6 +13,7 @@ const path_1 = require("path");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const database_module_1 = require("./database/database.module");
+const category_module_1 = require("./modules/category/category.module");
 const product_module_1 = require("./modules/product/product.module");
 let AppModule = class AppModule {
 };
@@ -23,7 +24,8 @@ AppModule = __decorate([
             graphql_1.GraphQLModule.forRoot({
                 autoSchemaFile: (0, path_1.join)(process.cwd(), 'src/schema.gql'),
             }),
-            product_module_1.ProductModule
+            product_module_1.ProductModule,
+            category_module_1.CategoryModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

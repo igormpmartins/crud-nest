@@ -94,8 +94,4 @@ export class ProductService{
         return true
     }
 
-/*
-falta categorias
-*/
-
 }

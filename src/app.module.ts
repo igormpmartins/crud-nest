@@ -4,6 +4,7 @@ import { join } from 'path'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { DatabaseModule } from './database/database.module'
+import { CategoryModule } from './modules/category/category.module'
 import { ProductModule } from './modules/product/product.module'
 
 @Module({
@@ -12,7 +13,8 @@ import { ProductModule } from './modules/product/product.module'
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
-    ProductModule
+    ProductModule,
+    CategoryModule
   ],
   controllers: [AppController],
   providers: [AppService],
