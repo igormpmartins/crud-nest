@@ -11,3 +11,13 @@ type Product {
 type Query {
   getAllProducts: [Product!]!
 }
+
+type Mutation {
+  createProduct(input: ProductInput!): Product!
+}
+
+input ProductInput {
+  id: Float
+  description: String!
+  price: Float!
+}
