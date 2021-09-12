@@ -1,4 +1,5 @@
 import { Field, ObjectType } from "@nestjs/graphql";
+import { Image } from "./image";
 
 @ObjectType()
 export class Product{
@@ -8,4 +9,6 @@ export class Product{
     description: string
     @Field()
     price: number
+    @Field({nullable: true})
+    image: Image
 }

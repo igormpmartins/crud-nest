@@ -7,17 +7,18 @@ type Category {
   category: String!
 }
 
-type Product {
-  id: Float
-  description: String!
-  price: Float!
-}
-
 type Image {
   id: Float
   description: String!
   url: String!
   product_id: Float!
+}
+
+type Product {
+  id: Float
+  description: String!
+  price: Float!
+  image: Image
 }
 
 type Query {
@@ -40,6 +41,7 @@ input ProductInput {
   id: Float
   description: String!
   price: Float!
+  image: ImageInput
 }
 
 input ImageInput {

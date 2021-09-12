@@ -4,6 +4,7 @@ import { ProductImage } from "./product.image.entity";
 export declare class ProductService {
     private readonly mySQL;
     constructor(mySQL: MySQLProvider);
+    findImages(products: any): Promise<Product[]>;
     findAll(): Promise<Product[]>;
     findById(id: number): Promise<Product>;
     create(entity: Product): Promise<Product>;

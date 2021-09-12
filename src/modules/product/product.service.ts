@@ -6,6 +6,47 @@ import { ProductImage } from "./product.image.entity";
 @Injectable()
 export class ProductService{
     constructor(@Inject('DATABASE') private readonly mySQL: MySQLProvider) {}
+
+    async findImages(products): Promise<Product[]> {
+
+        if (products.length === 0) {
+            return products
+        } else {
+
+            const conn = await this.mySQL.getConnection()
+
+            const listIds = products.map(item=>item.id).join(',')
+            const [imagesDB] = await conn.query(`select * from images where product_id in (${listIds})`)
+            const imgJson = JSON.parse(JSON.stringify(imagesDB))
+
+            const mapImages = imgJson.reduce((prev, curr)=> {
+                return {
+                    ...prev,
+                    [curr.product_id]:curr
+                }
+            }, {})
+
+            const productsImg = products.map(prod=> {
+                const prodConv = new Product()
+                prodConv.id = prod.id
+                prodConv.description = prod.description
+                prodConv.price = prod.price
+
+                prodConv.image = mapImages[prod.id]
+
+                return prodConv
+
+            })
+
+            console.log(productsImg)
+            
+            return productsImg
+
+
+        }
+
+    }
+
     async findAll(): Promise<Product[]> {
 
         const conn = await this.mySQL.getConnection()
@@ -20,7 +61,8 @@ export class ProductService{
             return nprod
         })
 
-        return prodList
+        //return prodList
+        return this.findImages(prodList)
 
     }
     async findById(id: number): Promise<Product> {

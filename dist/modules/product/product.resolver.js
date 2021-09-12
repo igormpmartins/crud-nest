@@ -30,6 +30,7 @@ let ProductResolver = class ProductResolver {
             prod.id = p.id;
             prod.description = p.description;
             prod.price = p.price;
+            prod.image = p.image;
             return prod;
         });
         return prodsDto;

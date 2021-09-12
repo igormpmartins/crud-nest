@@ -1,4 +1,5 @@
 import { Field, InputType } from "@nestjs/graphql";
+import { ImageInput } from "./image.input";
 
 @InputType()
 export class ProductInput{
@@ -8,4 +9,6 @@ export class ProductInput{
     description: string
     @Field()
     price: number
+    @Field({nullable: true})
+    image: ImageInput
 }
