@@ -40,7 +40,6 @@ let ProductService = class ProductService {
                 prodConv.image = mapImages[prod.id];
                 return prodConv;
             });
-            console.log(productsImg);
             return productsImg;
         }
     }

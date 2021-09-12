@@ -37,11 +37,8 @@ export class ProductService{
                 return prodConv
 
             })
-
-            console.log(productsImg)
             
             return productsImg
-
 
         }
 
