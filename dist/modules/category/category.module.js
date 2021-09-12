@@ -9,13 +9,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CategoryModule = void 0;
 const common_1 = require("@nestjs/common");
 const category_controller_1 = require("./category.controller");
+const category_resolver_1 = require("./category.resolver");
 const category_service_1 = require("./category.service");
 let CategoryModule = class CategoryModule {
 };
 CategoryModule = __decorate([
     (0, common_1.Module)({
         controllers: [category_controller_1.CategoryController],
-        providers: [category_service_1.CategoryService]
+        providers: [category_service_1.CategoryService, category_resolver_1.CategoryResolver]
     })
 ], CategoryModule);
 exports.CategoryModule = CategoryModule;

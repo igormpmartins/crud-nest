@@ -52,6 +52,4 @@ export class ProductResolver {
         return this.productService.removeImage(productId, id)
     }
 
-    //falta categorias
-
 }

@@ -41,6 +41,4 @@ export class ProductController {
 		return this.productService.removeImage(productId, id)
 	}
 
-	//falta categorias
-
 }

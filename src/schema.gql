@@ -2,6 +2,11 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Category {
+  id: Float
+  category: String!
+}
+
 type Product {
   id: Float
   description: String!
@@ -17,6 +22,7 @@ type Image {
 
 type Query {
   getAllProducts: [Product!]!
+  getAllCategories: [Category!]!
 }
 
 type Mutation {
@@ -25,6 +31,9 @@ type Mutation {
   updateProduct(input: ProductInput!, id: Float!): Product!
   createImageOnProduct(input: ImageInput!, productId: Float!): Image!
   removeImageOnProduct(id: Float!, productId: Float!): Boolean!
+  removeCategory(id: Float!): Boolean!
+  updateCategory(input: CategoryInput!, id: Float!): Category!
+  createCategory(input: CategoryInput!): Category!
 }
 
 input ProductInput {
@@ -38,4 +47,9 @@ input ImageInput {
   description: String!
   url: String!
   product_id: Float
+}
+
+input CategoryInput {
+  id: Float
+  category: String!
 }
